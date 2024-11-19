@@ -1,0 +1,56 @@
+﻿@model WebApplication11.Models.Reserva
+
+@{
+    ViewData["Title"] = "Crear Reserva";
+}
+
+<h1 class="mb-4">Crear Nueva Reserva</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="UsuarioId" class="form-label"></label>
+                <select asp-for="UsuarioId" class="form-select" asp-items="ViewBag.UsuarioId"></select>
+                <span asp-validation-for="UsuarioId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="HabitacionId" class="form-label"></label>
+                <select asp-for="HabitacionId" class="form-select" asp-items="ViewBag.HabitacionId"></select>
+                <span asp-validation-for="HabitacionId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="FechaCheckIn" class="form-label"></label>
+                <input asp-for="FechaCheckIn" type="date" class="form-control" />
+                <span asp-validation-for="FechaCheckIn" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="FechaCheckOut" class="form-label"></label>
+                <input asp-for="FechaCheckOut" type="date" class="form-control" />
+                <span asp-validation-for="FechaCheckOut" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Estado" class="form-label"></label>
+                <input asp-for="Estado" class="form-control" />
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-custom-primary" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebApplication11.Models.Pago>
+
+@{
+    ViewData["Title"] = "Lista de Pagos";
+}
+
+<h1 class="mb-4">Lista de Pagos</h1>
+
+<div class="d-flex justify-content-end mb-4">
+    <a asp-action="Create" class="btn btn-custom-primary">Crear Nuevo Pago</a>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">Pago @item.PagoId</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Monto:</strong> $@item.Monto</p>
+                    <p class="card-text"><strong>Fecha de Pago:</strong> @item.FechaPago.ToString()</p>
+                    <p class="card-text"><strong>Método de Pago:</strong> @item.MetodoPago</p>
+                    <p class="card-text"><strong>Estado:</strong> @item.Estado</p>
+                    <p class="card-text"><strong>ID de Reserva:</strong> @item.Reserva.ReservaId</p>
+                </div>
+                <div class="card-footer text-end">
+                    <a asp-action="Details" asp-route-id="@item.PagoId" class="btn btn-custom-primary btn-sm me-2">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@item.PagoId" class="btn btn-custom-primary btn-sm me-2">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.PagoId" class="btn btn-custom-primary btn-sm">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

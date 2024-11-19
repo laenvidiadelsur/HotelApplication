@@ -1,0 +1,91 @@
+﻿@model WebApplication11.Models.HabitacionViewModel
+<style>
+    .hero-section {
+        background-image: url(https://plus.unsplash.com/premium_photo-1687960116497-0dc41e1808a2?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); /* Cambia esta ruta a la ubicación de tu imagen */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 60px 0; /* Ajusta el espacio según sea necesario */
+        color: white; /* Asegura que el texto sea legible sobre el fondo */
+    }
+
+
+
+   
+</style>
+@section Styles {
+    <link rel="stylesheet" href="~/css/cards.css" type="text/css">
+
+}
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>Sona Un Hotel de Lujo</h1>
+                    <p>
+                        Aquí están los mejores sitios de reserva de hoteles, incluidas recomendaciones para viajes internacionales y para encontrar habitaciones de hotel a bajo precio.
+                    </p>
+                    <a href="#" class="primary-btn">Descubre Ahora</a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                <div class="booking-form">
+                    <h3>Reserva tu Hotel</h3>
+                    <form asp-action="Reservar" method="post">
+                        <div class="check-date">
+                            <label for="date-in">Fecha de Entrada:</label>
+                            <input type="date" class="date-input" asp-for="FechaCheckIn" />
+                            <span asp-validation-for="FechaCheckIn" class="text-danger"></span>
+                        </div>
+                        <div class="check-date">
+                            <label for="date-out">Fecha de Salida:</label>
+                            <input type="date" class="date-input" asp-for="FechaCheckOut" />
+                            <span asp-validation-for="FechaCheckOut" class="text-danger"></span>
+                        </div>
+                        <div class="select-option">
+                            <label for="room">Habitación:</label>
+                            <select asp-for="HabitacionId" class="form-select">
+                                <option value="">Seleccione una Habitación</option>
+                                @foreach (var habitacion in Model.HabitacionesDisponibles)
+                                {
+                                    <option value="@habitacion.HabitacionId">@habitacion.NumeroHabitacion</option>
+                                }
+                            </select>
+                            <span asp-validation-for="HabitacionId" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="primary-btn">Reservar Ahora</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="articles" style="padding-top : 80px;">
+    @foreach (var habitacion in Model.HabitacionesDisponibles)
+    {
+        <article>
+            <div class="article-wrapper">
+                
+                <div class="article-body">
+                    <h2>@habitacion.TipoNombre</h2>
+                    <p>
+                        <strong>Precio:</strong> $@habitacion.PrecioBase / por noche<br>
+                        <strong>Número de Habitación:</strong> @habitacion.NumeroHabitacion<br>
+                        <strong>Estado:</strong> @habitacion.Estado<br>
+                        <strong>Servicios:</strong> @string.Join(", ", habitacion.Servicios)<br>
+                        <strong>Descripción:</strong> @habitacion.TipoDescripcion
+                    </p>
+                    <a href="#" class="read-more">
+                        Más Detalles <span class="sr-only">sobre @habitacion.TipoNombre</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </article>
+    }
+</section>
+

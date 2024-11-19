@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebApplication11.Models.Reseña>
+
+@{
+    ViewData["Title"] = "Lista de Reseñas";
+}
+
+<h1 class="mb-4">Lista de Reseñas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-custom-primary mb-3">Crear Nueva Reseña</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Calificacion)</th>
+                <th>@Html.DisplayNameFor(model => model.Comentario)</th>
+                <th>@Html.DisplayNameFor(model => model.CreadoEn)</th>
+                <th>@Html.DisplayNameFor(model => model.Habitacion)</th>
+                <th>@Html.DisplayNameFor(model => model.Usuario)</th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Calificacion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Comentario)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CreadoEn)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Habitacion.HabitacionId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Usuario.UsuarioId)</td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.ReseñaId" class="btn btn-sm btn-custom-primary">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.ReseñaId" class="btn btn-sm btn-secondary">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.ReseñaId" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

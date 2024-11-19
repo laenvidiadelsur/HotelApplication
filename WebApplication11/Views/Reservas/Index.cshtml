@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebApplication11.Models.Reserva>
+
+@{
+    ViewData["Title"] = "Lista de Reservas";
+}
+
+<h1 class="mb-4">Lista de Reservas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-custom-primary mb-3">Crear Nueva Reserva</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FechaCheckIn)</th>
+                <th>@Html.DisplayNameFor(model => model.FechaCheckOut)</th>
+                <th>@Html.DisplayNameFor(model => model.Estado)</th>
+                <th>@Html.DisplayNameFor(model => model.CreadoEn)</th>
+                <th>@Html.DisplayNameFor(model => model.Habitacion)</th>
+                <th>@Html.DisplayNameFor(model => model.Usuario)</th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.FechaCheckIn)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FechaCheckOut)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CreadoEn)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Habitacion.HabitacionId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Usuario.UsuarioId)</td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.ReservaId" class="btn btn-sm btn-custom-primary">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.ReservaId" class="btn btn-sm btn-secondary">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.ReservaId" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

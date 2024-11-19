@@ -1,0 +1,52 @@
+﻿@model WebApplication11.Models.Habitacione
+
+@{
+    ViewData["Title"] = "Crear Habitación";
+}
+
+<h1 class="mb-4">Crear Habitación</h1>
+
+<div class="card shadow-sm p-4 mb-4">
+    <h4 class="card-title">Detalles de la Habitación</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="NumeroHabitacion" class="form-label"></label>
+                    <input asp-for="NumeroHabitacion" class="form-control" />
+                    <span asp-validation-for="NumeroHabitacion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="TipoId" class="form-label"></label>
+                    <select asp-for="TipoId" class="form-select" asp-items="ViewBag.TipoId"></select>
+                    <span asp-validation-for="TipoId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Estado" class="form-label"></label>
+                    <select asp-for="Estado" class="form-select">
+                        <option value="disponible">Disponible</option>
+                        <option value="reservada">Reservada</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                    </select>
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-end mt-4">
+                    <input type="submit" value="Crear" class="btn btn-custom-primary me-2" />
+                    <a asp-action="Index" class="btn btn-secondary">Regresar a la lista</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplication11.Models.TiposHabitacion>
+
+@{
+    ViewData["Title"] = "Lista de Tipos de Habitación";
+}
+
+<h1 class="mb-4">Lista de Tipos de Habitación</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-custom-primary mb-3">Crear Nuevo Tipo de Habitación</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.NombreTipo)</th>
+                <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
+                <th>@Html.DisplayNameFor(model => model.PrecioBase)</th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.NombreTipo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PrecioBase)</td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.TipoId" class="btn btn-sm btn-custom-primary">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.TipoId" class="btn btn-sm btn-secondary">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.TipoId" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
